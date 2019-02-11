@@ -16,7 +16,7 @@ namespace MyAnnonser
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Ads", action = "GetAds", id = UrlParameter.Optional }
+                defaults: new { controller = "Ads", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

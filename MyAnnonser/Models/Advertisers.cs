@@ -7,12 +7,14 @@ namespace MyAnnonser.Models
 {
     public class Advertisers
     {
-        public Advertisers(int id, string advName)
-        {
-            Id = id;
-            AdvName = advName;
-        }
-        public int Id { get; set; }
-        public string AdvName { get; set; }
+        
+
+        public int AdvertiserId { get; set; }
+        public string AdName { get; set; }
+        //public virtual Ads Ads{ get; set; }
+
+        public virtual ICollection <Ads> Ads { get; set; }
+
+       
     }
 }

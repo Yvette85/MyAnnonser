@@ -1,9 +1,7 @@
 ﻿@model List< MyAnnonser.Models.Ads>
 
 
-{
-    ViewBag.Title = "Index";
-}
+
 
 <h2>Index</h2>
 
@@ -21,6 +19,9 @@
 
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].AdId)
+        </th>
 
         <th>
             @Html.DisplayNameFor(model => model[0].AdHeadline)
@@ -32,9 +33,9 @@
         </th>
 
 
-        <th>
+        @*<th>
             @Html.ActionLink("RegNum", "Index", new { sortOrder = "Descending" })
-        </th>
+        </th>*@
 
         <th>
 
@@ -44,34 +45,40 @@
             @Html.DisplayNameFor(model => model[0].AdName)
         </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model[0].PublicationDates)
+        </th>
 
-        
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        @Html.HiddenFor(model => item.AdId)
+    <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.AdHeadline)
-            </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdHeadline)
+        </td>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.AdText)
-            </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdText)
+        </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.AdName)
-            </td>
-           
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AdId }) |
-                @Html.ActionLink("check out", "Delete", new { id = item.AdId })
-            </td>
-        </tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdName)
+        </td>
+
+
+      
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AdId}) |
+            @Html.ActionLink("Details", "Details", new { id = item.AdId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AdId })
+        </td>
+    </tr>
     }
 
 </table>

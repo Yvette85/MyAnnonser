@@ -26,13 +26,15 @@ namespace MyAnnonser.Models
         [Required(ErrorMessage ="Text is required")]
         public string AdText { get; set; }
 
-        public int AdvertiserId { get; set; }
+        public virtual int AdvertiserId { get; set; }
 
-        public Advertisers Advertisers { get; set; }
+        public virtual Advertisers Advertisers { get; set; }
         public string AdName { get;  set; }
 
 
         public IEnumerable<SelectListItem> ListAdvertisers { get; set; }
+
+        public virtual ICollection<PublicationDates> PublicationDates{ get; set; }
 
 
 

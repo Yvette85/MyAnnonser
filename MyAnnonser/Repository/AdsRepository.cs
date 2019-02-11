@@ -74,16 +74,40 @@ namespace MyAnnonser.Repository
 
 
 
-        public void AddAnns(Ads ad)
+        public void  AddAnns(Ads ad)
         {
             try
             {
-                connection();
-                con.Execute("AddNewAnnons", ad, commandType: CommandType.StoredProcedure);
-                    
-                    
-             }
+                //DynamicParameters param = new DynamicParameters();
+                ////param.Add("@AdvertiserId", ad.AdvertiserId);
+                //param.Add("@Adheadline", ad.AdHeadline);
+                //param.Add("@AdText", ad.AdText);
+                //connection();
+                //con.Execute("AddNewAnnons", ad, commandType: CommandType.StoredProcedure);
 
+                //Random rand = new Random();
+                //int[] numbers = new int[5];
+
+                //for (int i = 0; i <= 4; i++)
+                
+                //    rand.Next(0, 21);
+                
+
+
+
+                connection();
+                SqlCommand com = new SqlCommand("AddNewAnnons", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@AdId", ad.AdId);
+                com.Parameters.AddWithValue("@Adheadline", ad.AdHeadline);
+                com.Parameters.AddWithValue("@AdText", ad.AdText);
+                com.Parameters.AddWithValue("@AdvertiserId", ad.AdvertiserId);
+                int i = com.ExecuteNonQuery();
+                con.Close();
+                
+            }
+
+         
 
             catch (Exception ex)
             {
@@ -99,7 +123,7 @@ namespace MyAnnonser.Repository
             try
             {
                 connection();
-                con.Execute("UpdateAnnDetails", ad, commandType: CommandType.StoredProcedure);
+                con.Execute("UpdateAnnsDetails", ad, commandType: CommandType.StoredProcedure);
 
             }
             catch (Exception)
@@ -116,7 +140,7 @@ namespace MyAnnonser.Repository
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@AdId", Id);
                 connection();
-                con.Execute("DeleteAnnById", param, commandType: CommandType.StoredProcedure);
+                con.Execute("DeleteAnnsById", param, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch(Exception ex)

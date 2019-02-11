@@ -30,7 +30,10 @@ namespace MyAnnonser.Controllers
 
 
         // GET: Ads/Create
-
+        public ActionResult Create()
+        {
+            return View();
+        }
 
 
         public ActionResult Create(Ads ad)
@@ -43,8 +46,9 @@ namespace MyAnnonser.Controllers
 
 
 
-
                     AdsRepository adrepo = new AdsRepository();
+
+                    adrepo.AddAnns(ad);
 
                     var advertisers = adrepo.GetAllAdvert();
 
@@ -54,7 +58,7 @@ namespace MyAnnonser.Controllers
                         Text = x.AdName,
                         Value = x.AdvertiserId.ToString()
                     });
-                    adrepo.AddAnns(ad);
+                   
                 }
 
                 return View();
@@ -63,17 +67,18 @@ namespace MyAnnonser.Controllers
             {
                 return View();
             }
-
-
-
-
-            //GET: Adano/Edit/5
-            public ActionResult Edit(int id)
-            {
-                AdsRepository adrepo = new AdsRepository();
-                return View(adrepo.GetAllAds().Find(ads => ads.AdId == id));
-            }
         }
+
+
+
+
+        //GET: Adano/Edit/5
+        public ActionResult Edit(int id)
+        {
+            AdsRepository adrepo = new AdsRepository();
+            return View(adrepo.GetAllAds().Find(ads => ads.AdId == id));
+        }
+
 
 
        

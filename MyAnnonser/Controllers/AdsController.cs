@@ -1,14 +1,8 @@
-﻿using Dapper;
-using MyAnnonser.Models;
+﻿using MyAnnonser.Models;
 using MyAnnonser.Repository;
-
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,46 +14,46 @@ namespace MyAnnonser.Controllers
         public ActionResult Index()
         {
             AdsRepository adrepo = new AdsRepository();
-
             return View(adrepo.GetAllAds());
-
-
         }
 
-
-
+        //// GET: Ads/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         // GET: Ads/Create
         public ActionResult Create()
         {
+
+            AdsRepository adrepo = new AdsRepository();
+            var advertisers = adrepo.GetAllAdvert();
+            Ads ad = new Ads();
+        
+            ad.ListAdvertisers = advertisers.Select(x => new SelectListItem()
+            {
+                Text = x.AdName,
+                Value = x.AdvertiserId.ToString(),
+            });
+
             return View();
         }
 
-
+        // POST: Ads/Create
+        [HttpPost]
         public ActionResult Create(Ads ad)
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
 
-
-
-                    AdsRepository adrepo = new AdsRepository();
-
-                    adrepo.AddAnns(ad);
-
-                    var advertisers = adrepo.GetAllAdvert();
-
-
-                    ad.ListAdvertisers = advertisers.Select(x => new SelectListItem()
-                    {
-                        Text = x.AdName,
-                        Value = x.AdvertiserId.ToString()
-                    });
-                   
-                }
+                
+                AdsRepository adrepo = new AdsRepository();
+                adrepo.AddAnns(ad);
+                ViewBag.Message = "Records added successfully";
+            }
 
                 return View();
             }
@@ -69,66 +63,54 @@ namespace MyAnnonser.Controllers
             }
         }
 
-
-
-
-        //GET: Adano/Edit/5
+        // GET: Ads/Edit/5
         public ActionResult Edit(int id)
         {
             AdsRepository adrepo = new AdsRepository();
-            return View(adrepo.GetAllAds().Find(ads => ads.AdId == id));
+            return View(adrepo.GetAllAds().Find(ad => ad.AdId==id));
         }
 
-
-
-       
-            //POST: Adano/Edit/5
+        // POST: Ads/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Ads ads)
+        public ActionResult Edit(int id, Ads ad)
         {
             try
             {
                 AdsRepository adrepo = new AdsRepository();
-                adrepo.UpdateAnnons(ads);
+                adrepo.UpdateAnnons(ad);
 
-
-                return RedirectToAction("GetAllAds");
+                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
-
-
         }
-      
 
+        // GET: Ads/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        //POST: Adano/Delete/5
+        // POST: Ads/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
             try
             {
                 AdsRepository adrepo = new AdsRepository();
-
                 if (adrepo.DeleteAnnons(id))
                 {
-                    ViewBag.alertMsg = "Annsons details deleted successfully";
+                    ViewBag.AlertMsg = "Annons deleted";
                 }
 
-                // TODO: Add delete logic here
-
-                return RedirectToAction("GetAllAds");
+                return RedirectToAction("Index");
             }
             catch
             {
-                return RedirectToAction("GetAllAds");
+                return View();
             }
         }
     }
 }
-
-
-
-

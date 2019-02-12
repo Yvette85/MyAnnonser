@@ -8,10 +8,11 @@ namespace MyAnnonser.Models
     public class PublicationDates
     {
     
-        public int AdId { get; set; }
+     
         public DateTime Date { get; set; }
 
-        public virtual Ads Ads { get; set; }
-      
+        public  Ads Ads { get; set; }
+        public int AdId { get; set; }
+
     }
 }

@@ -17,7 +17,7 @@ namespace MyAnnonser.Models
         
 
        
-        [Display(Name="Id")]
+     
         public int AdId { get; set; }
 
         [Required(ErrorMessage ="HeadLine is required")]
@@ -26,9 +26,13 @@ namespace MyAnnonser.Models
         [Required(ErrorMessage ="Text is required")]
         public string AdText { get; set; }
 
-        public virtual int AdvertiserId { get; set; }
+       
 
-        public virtual Advertisers Advertisers { get; set; }
+        public  Advertisers Advertisers { get; set; }
+
+        public int AdvertiserId { get; set; }
+
+
         public string AdName { get;  set; }
 
 

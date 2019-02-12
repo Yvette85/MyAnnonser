@@ -1,87 +1,52 @@
-﻿@model List< MyAnnonser.Models.Ads>
-
-
-
-
-<h2>Index</h2>
+﻿@model IEnumerable<MyAnnonser.Models.Ads>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
-@*@using (Html.BeginForm("Search", "ParkedVehicles", FormMethod.Post))
-{
-    @Html.TextBox("search")
-
-    <input type="submit" value="Search" />
-}*@
-
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model[0].AdId)
+            @Html.DisplayNameFor(model => model.AdId)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model[0].AdHeadline)
+            @Html.DisplayNameFor(model => model.AdHeadline)
         </th>
-
-
         <th>
-            @Html.DisplayNameFor(model => model[0].AdText)
+            @Html.DisplayNameFor(model => model.AdText)
         </th>
-
-
-        @*<th>
-            @Html.ActionLink("RegNum", "Index", new { sortOrder = "Descending" })
-        </th>*@
-
         <th>
-
-
-
-        <th>
-            @Html.DisplayNameFor(model => model[0].AdName)
+            @Html.DisplayNameFor(model => model.AdvertiserId)
         </th>
-
         <th>
-            @Html.DisplayNameFor(model => model[0].PublicationDates)
+            @Html.DisplayNameFor(model => model.AdName)
         </th>
-
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        @Html.HiddenFor(model => item.AdId)
+@foreach (var item in Model) {
     <tr>
-
+        <td>
+            @Html.DisplayFor(modelItem => item.AdId)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.AdHeadline)
         </td>
-
-
         <td>
             @Html.DisplayFor(modelItem => item.AdText)
         </td>
-
+        <td>
+            @Html.DisplayFor(modelItem => item.AdvertiserId)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.AdName)
         </td>
-
-
-      
-
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.AdId}) |
-            @Html.ActionLink("Details", "Details", new { id = item.AdId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.AdId })
+            @Html.ActionLink("Edit", "Edit", new { id= item.AdId}) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AdId },
+             new {onclick="return confirm('Are sure you want to delete');"})    
         </td>
     </tr>
-    }
+}
 
 </table>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

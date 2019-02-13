@@ -85,7 +85,6 @@
       <AnsiNulls>Off</AnsiNulls>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Stored Procedures\GetAllDates.sql" />
     <Build Include="dbo\Stored Procedures\AddNewAnnons.sql" />
     <Build Include="dbo\Stored Procedures\DeleteAnnsById.sql" />
     <Build Include="dbo\Stored Procedures\UpdateAnnsDetails.sql" />

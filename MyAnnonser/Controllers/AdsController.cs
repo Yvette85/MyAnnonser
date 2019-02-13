@@ -17,7 +17,7 @@ namespace MyAnnonser.Controllers
             return View(adrepo.GetAllAds());
         }
 
-        //// GET: Ads/Details/5
+        ////// GET: Ads/Details/5
         //public ActionResult Details(int id)
         //{
         //    return View();
@@ -88,11 +88,7 @@ namespace MyAnnonser.Controllers
             }
         }
 
-        // GET: Ads/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+    
 
         // POST: Ads/Delete/5
         [HttpPost]

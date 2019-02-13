@@ -35,13 +35,13 @@ namespace MyAnnonser.Repository
             {
                 connection();
                 //con.Open();
-                //con.Execute("GetAllAds", commandType: CommandType.StoredProcedure);
-                con.Query("GetAllAds", commandType: CommandType.StoredProcedure);
+                con.Execute("GetAllAds", commandType: CommandType.StoredProcedure);
+                //con.Query("GetAllAds", commandType: CommandType.StoredProcedure);
                 //con.Close();
 
                 //IList<Ads> Ad = SqlMapper.Query<Ads>(con, "GetAllAds").ToList();
 
-               var myList = con.Query<Ads>("GetAllAds").ToList();
+                var myList = con.Query<Ads>("GetAllAds").ToList();
 
 
                 return myList;
@@ -81,23 +81,7 @@ namespace MyAnnonser.Repository
         {
             try
             {
-                //DynamicParameters param = new DynamicParameters();
-                ////param.Add("@AdvertiserId", ad.AdvertiserId);
-                //param.Add("@Adheadline", ad.AdHeadline);
-                //param.Add("@AdText", ad.AdText);
-                //connection();
-                //con.Execute("AddNewAnnons", ad, commandType: CommandType.StoredProcedure);
-
-                //Random rand = new Random();
-                //int[] numbers = new int[5];
-
-                //for (int i = 0; i <= 4; i++)
-                
-                //    rand.Next(0, 21);
-                
-
-
-
+      
                 connection();
                 SqlCommand com = new SqlCommand("AddNewAnnons", con);
                 com.CommandType = CommandType.StoredProcedure;

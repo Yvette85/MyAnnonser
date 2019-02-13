@@ -37,7 +37,7 @@ namespace MyAnnonser.Controllers
                 Value = x.AdvertiserId.ToString(),
             });
 
-            return View();
+            return View(ad);
         }
 
         // POST: Ads/Create
@@ -52,10 +52,11 @@ namespace MyAnnonser.Controllers
                 
                 AdsRepository adrepo = new AdsRepository();
                 adrepo.AddAnns(ad);
+                   
                 ViewBag.Message = "Records added successfully";
             }
 
-                return View();
+                return View(ad);
             }
             catch
             {
@@ -64,10 +65,10 @@ namespace MyAnnonser.Controllers
         }
 
         // GET: Ads/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             AdsRepository adrepo = new AdsRepository();
-            return View(adrepo.GetAllAds().Find(ad => ad.AdId==id));
+            return View(adrepo.GetAllAds().Find(ad => ad.UniqueId ==id));
         }
 
         // POST: Ads/Edit/5

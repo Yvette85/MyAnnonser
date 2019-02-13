@@ -35,13 +35,16 @@ namespace MyAnnonser.Repository
             {
                 connection();
                 //con.Open();
-                con.Execute("GetAllAds", commandType: CommandType.StoredProcedure);
+                //con.Execute("GetAllAds", commandType: CommandType.StoredProcedure);
+                con.Query("GetAllAds", commandType: CommandType.StoredProcedure);
                 //con.Close();
 
-                IList<Ads> Ad = SqlMapper.Query<Ads>(con, "GetAllAds").ToList();
-                
-            
-                return Ad.ToList();
+                //IList<Ads> Ad = SqlMapper.Query<Ads>(con, "GetAllAds").ToList();
+
+               var myList = con.Query<Ads>("GetAllAds").ToList();
+
+
+                return myList;
 
             }
             catch (Exception)
@@ -57,13 +60,13 @@ namespace MyAnnonser.Repository
             {
                 connection();
                 //con.Open();
-                con.Execute("GetAllAdvertisers", commandType: CommandType.StoredProcedure);
+                con.Query("GetAllAdvertisers", commandType: CommandType.StoredProcedure);
                 //con.Close();
 
-                IList<Advertisers> Adt = SqlMapper.Query<Advertisers>(con, "GetAllAdvertisers").ToList();
+                //IList<Advertisers> Adt = SqlMapper.Query<Advertisers>(con, "GetAllAdvertisers").ToList();
+                var myList = con.Query<Advertisers>("GetAllAdvertisers").ToList();
 
-
-                return Adt.ToList();
+                return myList;
 
             }
             catch (Exception)
@@ -98,7 +101,7 @@ namespace MyAnnonser.Repository
                 connection();
                 SqlCommand com = new SqlCommand("AddNewAnnons", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@AdId", ad.AdId);
+                com.Parameters.AddWithValue("@AdId", ad.UniqueId);
                 com.Parameters.AddWithValue("@Adheadline", ad.AdHeadline);
                 com.Parameters.AddWithValue("@AdText", ad.AdText);
                 com.Parameters.AddWithValue("@AdvertiserId", ad.AdvertiserId);

@@ -6,7 +6,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AdId)
+            @Html.DisplayNameFor(model => model.UniqueId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AdHeadline)
@@ -14,11 +14,11 @@
         <th>
             @Html.DisplayNameFor(model => model.AdText)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.AdvertiserId)
-        </th>
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.AdName)
+            @Html.DisplayNameFor(model => model.PublicationDates)
         </th>
         <th></th>
     </tr>
@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AdId)
+            @Html.DisplayFor(modelItem => item.UniqueId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AdHeadline)
@@ -34,16 +34,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.AdText)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.AdvertiserId)
+        </td*@>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublicationDates)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AdName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id= item.AdId}) |
+            @Html.ActionLink("Edit", "Edit", new { id= item.UniqueId}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.AdId },
+            @Html.ActionLink("Delete", "Delete", new { id = item.UniqueId },
              new {onclick="return confirm('Are sure you want to delete');"})    
         </td>
     </tr>

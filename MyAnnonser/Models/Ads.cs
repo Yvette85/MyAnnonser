@@ -14,11 +14,11 @@ namespace MyAnnonser.Models
 {
     public class Ads
     {
-        
 
-       
-     
-        public int AdId { get; set; }
+        [Required]
+        [Display(Name = "AdId")]
+        public string UniqueId { get; set; }
+
 
         [Required(ErrorMessage ="HeadLine is required")]
         public string AdHeadline { get; set; }
@@ -26,7 +26,7 @@ namespace MyAnnonser.Models
         [Required(ErrorMessage ="Text is required")]
         public string AdText { get; set; }
 
-       
+
 
         public  Advertisers Advertisers { get; set; }
 
@@ -40,7 +40,7 @@ namespace MyAnnonser.Models
 
         public virtual ICollection<PublicationDates> PublicationDates{ get; set; }
 
-
+      
 
     }
     

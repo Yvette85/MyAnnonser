@@ -260,3 +260,7 @@ paket-files/
 __pycache__/
 *.pyc
 /SQLQuery1.sql
+/SQLQuery3.sql
+/SQLQuery4.sql
+/SQLQuery5.sql
+/SQLQuery6.sql
